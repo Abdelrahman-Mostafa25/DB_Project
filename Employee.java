@@ -23,22 +23,53 @@ import javax.persistence.OneToMany;
 @Entity
 public class Employee implements Serializable {
 
+    public Employee() {
+    }
+
+    public Employee(String id, String firstName, char middleName, String lastName, Date birthDate, String address, char sex, float salary, Employee superssn, Department department_number) {
+        this.id = id;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.address = address;
+        this.sex = sex;
+        this.salary = salary;
+        this.superssn = superssn;
+        this.department_number = department_number;
+    }
+
+    public Employee(String id, String firstName, char middleName, String lastName, Date birthDate, String address, char sex, float salary, Department department_number) {
+        this.id = id;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.address = address;
+        this.sex = sex;
+        this.salary = salary;
+        this.department_number = department_number;
+    }
+
+    
+    
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column (name = "SSN")
     private String id;
 
-    @Column (name = "fName")
+    @Column (name = "Fname")
     private String firstName;
     
     @Column (name = "minit")
     private char middleName;
     
-    @Column (name = "lName")
+    @Column (name = "Lname")
     private String lastName;
     
-    @Column (name = "birthDate")
+    @Column (name = "Bdate")
     private Date birthDate;
     
     @Column (name = "Address")
@@ -49,6 +80,10 @@ public class Employee implements Serializable {
     
     @Column (name = "Salary")
     private float salary;
+    
+    @JoinColumn(name = "Super_ssn", referencedColumnName = "Ssn")
+    @ManyToOne
+    private Employee superssn;
     
     @ManyToOne
     @JoinColumn (name = "Department_number", referencedColumnName = "Dno" )
