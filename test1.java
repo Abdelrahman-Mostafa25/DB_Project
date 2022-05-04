@@ -6,6 +6,7 @@
 package Entities.DB_Project;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,9 +23,19 @@ public class test1 implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    @Column(name="Empname")
+    private String name;
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id,String name) {
+        this.id = id;
+        this.name=name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setId(Long id) {
