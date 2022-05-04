@@ -1,33 +1,30 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Entities.DB_Project;
 
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
+/**
+ *
+ * @author 20109
+ */
 @Entity
-public class test1 implements Serializable {
+public class NewEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name="Empname")
-    private String name;
+
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id,String name) {
-        this.id = id;
-        this.name=name;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setId(Long id) {
@@ -44,10 +41,10 @@ public class test1 implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof test1)) {
+        if (!(object instanceof NewEntity)) {
             return false;
         }
-        test1 other = (test1) object;
+        NewEntity other = (NewEntity) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -56,7 +53,7 @@ public class test1 implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.DB_Project.test1[ id=" + id + " ]";
+        return "Entities.DB_Project.NewEntity[ id=" + id + " ]";
     }
     
 }
