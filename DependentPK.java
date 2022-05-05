@@ -14,10 +14,10 @@ import javax.persistence.Embeddable;
  *
  * @author 3bdo Mostafa
  */
-@Embeddable
+@Embeddable //@Embeddable annotation to declare that a class will be embedded by other entities.
 public class DependentPK implements Serializable {
 
-    @Basic(optional = false)//no cobstraib on it
+    @Basic(optional = false)//no constrain on it
     @Column(name = "Essn")
     private String essn;
     @Basic(optional = false)

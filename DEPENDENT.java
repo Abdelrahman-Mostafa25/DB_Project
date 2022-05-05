@@ -28,6 +28,12 @@ import javax.persistence.Temporal;
 public class DEPENDENT implements Serializable {
     
    private static final long serialVersionUID = 1L;
+   /*
+   In software, we come across many use cases when we need to have a composite primary key to define an entry in a table.
+   Composite primary keys are keys that use more than one column to identify a row in the table uniquely.
+   We represent a composite primary key in Spring Data by using the @Embeddable annotation on a class. 
+   This key is then embedded in the table's corresponding entity class as the composite primary key by using the @EmbeddedId annotation on a field of the @Embeddable type.
+   */
    @EmbeddedId
     protected DependentPK dependentPK;
     @Column(name="Sex")
