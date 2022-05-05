@@ -121,5 +121,9 @@ public class Employee implements Serializable {
     public String toString() {
         return "Entities.DB_Project.Employee[ id=" + id + " ]";
     }
+
+    public void setId(String string, String a, char c, String a0, java.util.Date date, String a1, char c0, float f, int i, int i0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

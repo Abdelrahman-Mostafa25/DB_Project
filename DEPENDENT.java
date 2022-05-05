@@ -7,11 +7,17 @@ package Entities.DB_Project;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Temporal;
 
 /**
@@ -20,50 +26,53 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class DEPENDENT implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Essn;
-    private String Dependent_name;
     
+   private static final long serialVersionUID = 1L;
+   @EmbeddedId
+    protected DependentPK dependentPK;
     @Column(name="Sex")
     private char sex;
     @Column(name="Bdate")
     @Temporal(javax.persistence.TemporalType.DATE)
+    //it helps to convert the date and time values from Java object to compatible database type and will retrieve it back to the application.
     private Date bdate;
     @Column(name="Relationship")
     private String relationship;
-    
+    @JoinColumn(name = "Essn", referencedColumnName = "Ssn", insertable = false, updatable = false)
+    //insertable = false, updatable = false: You would do that when the responsibility of creating/updating the referenced column isn't in the current entity, but in another entity.
+    @ManyToOne(optional = false ) //for no null falue
+    private Employee employee;
+     
     public DEPENDENT() {
     }
 
-    public DEPENDENT(Long Essn, String Dependent_name, char sex, Date bdate, String relationship) {
-        this.Essn = Essn;
-        this.Dependent_name = Dependent_name;
+    public DEPENDENT(DependentPK dependentPK) {
+        this.dependentPK = dependentPK;
+    }
+    
+    public DEPENDENT(char sex, Date bdate, String relationship) {
         this.sex = sex;
         this.bdate = bdate;
         this.relationship = relationship;
     }
 
+    public DependentPK getDependentPK() {
+        return dependentPK;
+    }
+
+    public void setDependentPK(DependentPK dependentPK) {
+        this.dependentPK = dependentPK;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
     
-
-    public Long getEssn() {
-        return Essn;
-    }
-
-    public void setEssn(Long Essn) {
-        this.Essn = Essn;
-    }
-
-    public String getDependent_name() {
-        return Dependent_name;
-    }
-
-    public void setDependent_name(String Dependent_name) {
-        this.Dependent_name = Dependent_name;
-    }
-
     public char getSex() {
         return sex;
     }
@@ -89,34 +98,9 @@ public class DEPENDENT implements Serializable {
         this.relationship = relationship;
     }
 
-    
-    
-
-    
- /*   
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (Essn != null ? Essn.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DEPENDENT)) {
-            return false;
-        }
-        DEPENDENT other = (DEPENDENT) object;
-        if ((this.Essn == null && other.Essn != null) || (this.Essn != null && !this.Essn.equals(other.Essn))) {
-            return false;
-        }
-        return true;
-    }
-*/
     @Override
     public String toString() {
-        return "Entities.DB_Project.DEPENDENT[ Essn=" + Essn + " ]";
+        return "Entities.DB_Project.DEPENDENT[ Essn=" + " ]";
     }
     
 }
